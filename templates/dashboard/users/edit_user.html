@@ -1,0 +1,215 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'user/editUser.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
+                            <li class="breadcrumb-item active">Validation</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card-box">
+                    <div class="media mb-3">
+                        <img class="d-flex mr-3 rounded-circle avatar-lg" src="/{{ user.userprofileinfo.profile_image }}"
+                             alt="Generic placeholder image">
+                        <div class="media-body">
+                            <h4 class="mt-0 mb-1">{{ user.first_name }} {{ user.last_name }}</h4>
+                            <p class="text-muted">{{ user.userprofileinfo.designation }}</p>
+                            <p class="text-muted"><i
+                                    class="mdi mdi-office-building"></i> {{ user.userprofileinfo.phone_no }}</p>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3 mt-4 text-uppercase bg-light p-2"><i class="mdi mdi-account-circle mr-1"></i>
+                        Personal Information</h5>
+                    <div class="">
+                        <h4 class="font-13 text-muted text-uppercase mb-1">email :</h4>
+                        <p class="mb-3"> {{ user.email }}</p>
+
+                        <h4 class="font-13 text-muted text-uppercase mb-1">last login time :</h4>
+                        <p class="mb-3"> {{ user.last_login }}</p>
+
+                        <h4 class="font-13 text-muted text-uppercase mb-1">last login Ip :</h4>
+                        <p class="mb-3">{{ user.date_joined }}</p>
+
+                    </div>
+
+                </div> <!-- end card-box-->
+            </div>
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Edit User</h4>
+                    </div>
+                    <div class="card-body">
+
+
+                        <form action="{% url 'user:submitEditUser' username=user.username %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">First name</label>
+                                        <input type="text" class="form-control"
+                                               placeholder="User First name"
+                                               name="firstName"
+                                               value="{{ user.first_name }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label>Last name</label>
+                                        <input type="text" class="form-control"
+                                               placeholder="User Last name"
+                                               name="lastName"
+                                               value="{{ user.last_name }}"
+                                               required
+                                        >
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustomUsername">Username</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                            </div>
+                                            <input type="text" class="form-control"
+                                                   placeholder="User Username" name="userName"
+                                                   aria-describedby="inputGroupPrepend"
+                                                   value="{{ user.username }}"
+                                                   required>
+                                            <div class="invalid-feedback">
+                                                Please choose a username.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control"
+                                               placeholder=" user email"
+                                               name="email"
+                                               value="{{ user.email }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">Designation</label>
+                                        <input type="text" class="form-control"
+                                               placeholder="User Designation"
+                                               name="designation"
+                                               value="{{ user.userprofileinfo.designation }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom02">Phone no</label>
+                                        <input type="text" class="form-control"
+                                               placeholder=" User Phone No"
+                                               name="phoneNo"
+                                               value="{{ user.userprofileinfo.phone_no }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">Password</label>
+                                        <input type="password" class="form-control"
+                                               placeholder="User Password"
+                                               name="password"
+                                               value="{{ user.password }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom02">Confirm Password</label>
+                                        <input type="password" class="form-control"
+                                               name="passwordConfirmation"
+                                               placeholder="Insert the password again"
+                                               value="{{ user.password }}"
+                                               required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">upload user display picture in here</label>
+                                        <input type="file" id="uploadFile" class="form-control"
+                                               name="displayImage"
+                                        >
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+
+                    </div> <!-- end card-body-->
+                </div>
+            </div>
+        </div>
+    </div> <!-- container -->
+{% endblock %}
+{% block extra_javascript %}
+    <!-- Plugin js-->
+    <script src="{% static 'libs/parsleyjs/parsley.min.js' %}"></script>
+
+    <!-- Validation init js-->
+    <script src="{% static 'js/pages/form-validation.init.js' %}"></script>
+{% endblock %}
+
+

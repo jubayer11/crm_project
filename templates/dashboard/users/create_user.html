@@ -1,0 +1,165 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
+                            <li class="breadcrumb-item active">Validation</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="mt-3 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                           <h4>Create User</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{% url 'user:submitUser' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustom01">First name</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder="User First name"
+                                                   name="firstName"
+                                                   required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label>Last name</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder="User Last name"
+                                                   name="lastName"
+                                                   required
+                                            >
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustomUsername">Username</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                       placeholder="User Username" name="userName"
+                                                       aria-describedby="inputGroupPrepend"
+                                                       required>
+                                                <div class="invalid-feedback">
+                                                    Please choose a username.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder=" user email"
+                                                   name="email"
+                                                   required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustom01">Designation</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder="User Designation"
+                                                   name="designation"
+                                                   required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustom02">Phone no</label>
+                                            <input type="text" class="form-control"
+                                                   placeholder=" User Phone No"
+                                                   name="phoneNo"
+                                                   required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustom01">Password</label>
+                                            <input type="password" class="form-control"
+                                                   placeholder="User Password"
+                                                   name="password"
+                                                   required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <label for="validationCustom02">Confirm Password</label>
+                                            <input type="password" class="form-control"
+                                                   name="passwordConfirmation"
+                                                   placeholder="Insert the password again" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </form>
+
+                        </div> <!-- end card-body-->
+                    </div>
+                </div>
+            </div>
+        </div><!-- end card-->
+
+
+    </div> <!-- container -->
+{% endblock %}
+{% block extra_javascript %}
+    <!-- Plugin js-->
+    <script src="{% static 'libs/parsleyjs/parsley.min.js' %}"></script>
+
+    <!-- Validation init js-->
+    <script src="{% static 'js/pages/form-validation.init.js' %}"></script>
+{% endblock %}
+
+

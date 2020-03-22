@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block body_extra %}
+    class="authentication-bg authentication-bg-pattern"
+{% endblock %}
+
+{% block page_content %}
+    {% block content %}{% endblock %}
+
+    <footer class="footer footer-alt">
+
+        <p id="footerInput">Copyright © 2020 <span><strong class="font-weight-bold text-white-50">CRM</strong></span>-(V1). Designed &
+            Developed by <span> <a href="http://whitepaper.tech/" target="_blank"> <strong
+                    class="font-weight-bold text-white-50">White Paper</strong></a></span> All rights reserved.</p>
+
+    </footer>
+{% endblock %}

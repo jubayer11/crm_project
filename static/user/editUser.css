@@ -1,0 +1,10 @@
+#uploadFile {
+    height: 120px;
+    border: 1px dotted #343a40;
+}
+
+.addUser {
+    color: whitesmoke;
+
+}
+.addUser:hover { color: #1abc9c;; }
