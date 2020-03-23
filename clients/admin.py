@@ -15,7 +15,7 @@ class ClientAdmin(admin.ModelAdmin):
     fields = (
         ('Company_name', 'email'),
         ('City', 'address', 'country'),
-        ('telephone', 'fax', 'website', 'Post_code'),
+        ('telephone', 'fax', 'website', 'Zip_code'),
         ('Rank', 'Company_size', 'Company_type',),
         ('Product_segment', 'Products'),
         ('Business_maturity_rate', 'Query_received', 'Business_result'),

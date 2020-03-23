@@ -1,0 +1,87 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'user/editUser.css' %}">
+{% endblock %}
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Extras</a></li>
+                            <li class="breadcrumb-item active">Profile</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Profile</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="offset-1 col-lg-10  offset-1">
+                <div class="card-box text-center">
+
+                    <img src="/{{ user.userprofileinfo.profile_image }}" style="height: 9.5rem;width: 9.5rem;"
+                         id="profile_image_size" class="rounded-circle img-thumbnail"
+                         alt="profile-image">
+
+                    <h4 class="mb-0">{{ user.first_name }} {{ user.last_name }}</h4>
+                    <p class="text-muted">{{ user.userprofileinfo.designation }}</p>
+
+                    {% if user.is_active == True %}
+                        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Active
+                        </button>
+                    {% else %}
+                        <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Suspended
+                        </button>
+                    {% endif %}
+                    {% if user.is_superuser == True %}
+                        <button type="button" class="btn btn-blue btn-xs waves-effect mb-2 waves-light">Superuser
+                        </button>
+                    {% else %}
+                        <button type="button" class="btn btn-info btn-xs waves-effect mb-2 waves-light">User</button>
+                    {% endif %}
+
+                    <div class="text-left mt-3">
+                        <p class="text-black-50 mb-2 font-13"><strong>Full Name :</strong> <span
+                                class="ml-2">{{ user.first_name }} {{ user.last_name }}</span></p>
+                        <p class="text-black-50 mb-2 font-13"><strong>Username :</strong> <span
+                                class="ml-2">{{ user.username }}</span></p>
+                        <p class="text-black-50 mb-2 font-13"><strong>Designation :</strong> <span
+                                class="ml-2">{{ user.userprofileinfo.designation }}</span></p>
+
+                        <p class="text-black-50 mb-2 font-13"><strong>Mobile :</strong><span
+                                class="ml-2">{{ user.userprofileinfo.phone_no }}</span></p>
+
+                        <p class="text-black-50 mb-2 font-13"><strong>Email :</strong> <span
+                                class="ml-2 ">{{ user.email }}</span>
+                        </p>
+                        <p class="text-black-50 mb-2 font-13"><strong>Last Login Time :</strong> <span
+                                class="ml-2 ">{{ user.last_login }}</span>
+                        </p>
+                        <p class="text-black-50 mb-2 font-13"><strong>Last Login Ip :</strong> <span
+                                class="ml-2 ">{{ user.date_joined }}</span>
+                        </p>
+                    </div>
+
+                    <!-- end card-box -->
+
+
+                </div> <!-- end col-->
+            </div>
+            <!-- end row-->
+
+        </div> <!-- container -->
+    </div>
+{% endblock %}
+
+
+

@@ -70,6 +70,7 @@ class Client(models.Model):
     website = models.URLField(max_length=30, blank=True, verbose_name='Website')
     Zip_code = models.IntegerField(verbose_name='Zip Code', blank=True, null=True)
     Rank = models.CharField(max_length=50, verbose_name='Company Ranking', blank=True)
+    Rank_comment = models.TextField(max_length=50, verbose_name='Company Ranking Comment', blank=True)
     Communicate_date = models.DateTimeField(blank=True, null=True, verbose_name='Comunicate Date')
     Follow_up_date = models.DateTimeField(blank=True, null=True, verbose_name='Follow Up Date')
     Product_segment = models.CharField(max_length=550, blank=True, verbose_name='Product Segment')
@@ -79,7 +80,8 @@ class Client(models.Model):
     Company_size = models.CharField(max_length=50, choices=Company_size, blank=True, verbose_name='Company Size')
     Company_type = models.CharField(max_length=500, choices=Company_type, blank=True,
                                     verbose_name='Company Type')
-    Business_maturity_rate = models.CharField(max_length=50,blank=True, null=True, verbose_name='Business Maturity Rate')
+    Business_maturity_rate = models.CharField(max_length=50, blank=True, null=True,
+                                              verbose_name='Business Maturity Rate')
     English_spoken = models.CharField(blank=True, max_length=20, choices=English_spoken_Checking, default=0,
                                       verbose_name='English Spoken')
     Query_received = models.CharField(blank=True, max_length=20, choices=Query_received_spoken_Checking, default=0,

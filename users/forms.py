@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django_registration.forms import RegistrationForm
 
 from users.models import CustomUser
@@ -16,3 +16,8 @@ class UserForm(forms.ModelForm):
     class Meta():
         model = User
         fields = ('username', 'email', 'password')
+
+
+class CustomGroupForm(RegistrationForm):
+    class Meta(RegistrationForm.Meta):
+        model = CustomUser

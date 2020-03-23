@@ -7,4 +7,21 @@
     color: whitesmoke;
 
 }
-.addUser:hover { color: #1abc9c;; }
+
+.addUser:hover {
+    color: #1abc9c;;
+}
+
+#profile_image_size {
+    height: 9.5rem;
+    width: 9.5rem;
+}
+
+#optlist {
+     height: 130px;
+    border: 1px dotted #343a40;
+}
+#optlist1 {
+     height: 130px;
+    border: 1px dotted #343a40;
+}

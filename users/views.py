@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth.models import Group, Permission
 
 from .models import CustomUser, UserProfileInfo
 
@@ -27,14 +28,42 @@ class allUser(TemplateView):
         return context
 
 
+class allRole(TemplateView):
+    template_name = 'dashboard/users/allRole.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['roles'] = Group.objects.all()
+        return context
+
+
+def viewUser(request, username):
+    user = CustomUser.objects.get(username=username)
+    args = {'user': user}
+    return render(request, "dashboard/users/userProfile.html", args)
+
+
 class createUser(TemplateView):
     template_name = 'dashboard/users/create_user.html'
+
+
+class createRole(TemplateView):
+    template_name = 'dashboard/users/createRole.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['permissions'] = Permission.objects.all()
+        return context
 
 
 def editUser(request, username):
     user = CustomUser.objects.get(username=username)
     args = {'user': user}
     return render(request, "dashboard/users/edit_user.html", args)
+
+
+def editRole(request, roleName):
+    user = Group.objects.get(name=roleName)
 
 
 def submitUser(request):
@@ -58,6 +87,19 @@ def submitUser(request):
         userInfo.save()
 
     return redirect('user:allUser')
+
+
+def submitRole(request):
+    if request.method == 'POST':
+        roleName = request.POST["roleName"]
+        permissions = request.POST['permissions']
+        group = Group(name=roleName)
+        group.save()
+        for permission in permissions:
+            permission = Permission.objects.get(id=permission)
+            group.permissions.add(permission)
+
+    return redirect('user:allRole')
 
 
 def submitEditUser(request, username):
@@ -96,3 +138,8 @@ def deletUser(request, username):
     user.delete()
     return redirect('user:allUser')
 
+
+def deleteRole(request, roleName):
+    role = Group.objects.get(name=roleName)
+    role.delete()
+    return redirect('user:allRole')

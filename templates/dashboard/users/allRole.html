@@ -1,0 +1,105 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+{% block extra_css %}
+    <link href="{% static 'libs/footable/footable.core.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'user/editUser.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                            <li class="breadcrumb-item active">Foo</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <!-- end row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                    <h4 class="header-title">Add,Edit & Remove roles</h4>
+                    <p class="sub-header">
+                        Add,edit or remove roles from here.
+                    </p>
+
+                    <div class="mb-2">
+                        <div class="row">
+                            <div class="col-12 text-sm-center form-inline">
+                                <div class="form-group mr-2">
+                                    <button id="demo-btn-addrow" class="btn btn-primary"><i
+                                            class="mdi mdi-plus-circle mr-2"></i> <a class="addUser"
+                                                                                     href="{% url 'user:createRole' %}">Add
+                                        New Role</a>
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <input id="demo-input-search2" type="text" placeholder="Search"
+                                           class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="demo-foo-addrow"
+                           class="table table-centered table-striped table-bordered mb-0 toggle-circle"
+                           data-page-size="7">
+                        <thead>
+                        <tr>
+                            <th style="width: 20px;">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+                                </div>
+                            </th>
+                            <th>Name</th>
+                            <th style="width: 125px;">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for role in roles %}
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                        <label class="custom-control-label" for="customCheck2">&nbsp;</label>
+                                    </div>
+                                </td>
+                                <td class="table-user">
+                                    {{ role.name }}
+                                </td>
+                                <td>
+
+                                    <a href="{% url 'user:editRole' roleName=role.name %}" class="action-icon"> <i
+                                            class="mdi mdi-square-edit-outline"></i></a>
+                                    <a href="{% url 'user:deleteRole' roleName=role.name %}" class="action-icon"> <i
+                                            class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr class="active">
+                            <td colspan="7">
+                                <div class="text-right">
+                                    <ul class="pagination pagination-split justify-content-end footable-pagination m-t-10"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div> <!-- end card-box -->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div> <!-- container -->
+{% endblock %}
+

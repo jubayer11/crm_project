@@ -30,7 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material.admin',
+    'material.admin.default',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -50,7 +51,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'users',
     'django_gulp',
-    'clients'
+    'clients',
+    'schedule',
 
 ]
 

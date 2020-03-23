@@ -170,7 +170,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group mb-3">
                                         <label for="simpleinput">Business Maturity Rate</label>
                                         <input type="text" id="simpleinput" name="business_maturity_rate"
@@ -178,15 +178,23 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group mb-3">
                                         <label for="example-select">Business Ranking</label>
                                         <select class="form-control" name="business_ranking" id="example-select">
+                                            <option>Choose an option</option>
                                             {% for x,y in Company_ranking %}
                                                 <option value="{{ x }}">{{ y }}</option>
                                             {% endfor %}
 
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group mb-3">
+                                        <label for="example-select">Business Ranking Comment</label>
+                                        <textarea class="form-control" id="example-textarea" name="rankComment"
+                                                  rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>

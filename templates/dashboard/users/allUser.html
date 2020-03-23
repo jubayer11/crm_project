@@ -2,51 +2,55 @@
 {% load static i18n %}
 {% block extra_css %}
     <link href="{% static 'libs/footable/footable.core.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'libs/custombox/custombox.min.css' %}" rel="stylesheet">
+
     <link rel="stylesheet" href="{% static 'user/editUser.css' %}">
 {% endblock %}
 {% block content %}
     <div class="container-fluid">
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box">
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                            <li class="breadcrumb-item active">Foo</li>
-                        </ol>
-                    </div>
-
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                        <li class="breadcrumb-item active">Foo</li>
+                    </ol>
                 </div>
+
             </div>
         </div>
-        <!-- end page title -->
-        <!-- end row -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-box">
-                    <h4 class="header-title">Add,Edit & Remove users</h4>
-                    <p class="sub-header">
-                        Add,edit or remove users from here.
-                    </p>
+    </div>
+    <!-- end page title -->
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card-box">
+                <h4 class="header-title">Add,Edit & Remove users</h4>
+                <p class="sub-header">
+                    Add,edit or remove users from here.
+                </p>
 
-                    <div class="mb-2">
-                        <div class="row">
-                            <div class="col-12 text-sm-center form-inline">
-                                <div class="form-group mr-2">
-                                    <button id="demo-btn-addrow" class="btn btn-primary"><i
-                                            class="mdi mdi-plus-circle mr-2"></i> <a class="addUser" href="{% url 'user:createUser' %}">Add New User</a>
-                                    </button>
-                                </div>
-                                <div class="form-group">
-                                    <input id="demo-input-search2" type="text" placeholder="Search"
-                                           class="form-control" autocomplete="off">
-                                </div>
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-12 text-sm-center form-inline">
+                            <div class="form-group mr-2">
+                                <button id="demo-btn-addrow" class="btn btn-primary"><i
+                                        class="mdi mdi-plus-circle mr-2"></i> <a class="addUser"
+                                                                                 href="{% url 'user:createUser' %}">Add
+                                    New User</a>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <input id="demo-input-search2" type="text" placeholder="Search"
+                                       class="form-control" autocomplete="off">
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="table-responsive">
                     <table id="demo-foo-addrow"
                            class="table table-centered table-striped table-bordered mb-0 toggle-circle"
                            data-page-size="7">
@@ -91,7 +95,8 @@
                                     <td><span class="badge label-table badge-danger">Suspended</span></td>
                                 {% endif %}
                                 <td>
-                                    <a href="" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                    <a href="{% url 'user:viewUser' username=user.username %}" class="action-icon"> <i
+                                            class="mdi mdi-eye"></i></a>
                                     <a href="{% url 'user:editUser' username=user.username %}" class="action-icon"> <i
                                             class="mdi mdi-square-edit-outline"></i></a>
                                     <a href="{% url 'user:deleteUser' username=user.username %}" class="action-icon"> <i
@@ -110,6 +115,7 @@
                         </tr>
                         </tfoot>
                     </table>
+                </div>
                 </div> <!-- end card-box -->
             </div> <!-- end col -->
         </div>
@@ -117,3 +123,7 @@
     </div> <!-- container -->
 {% endblock %}
 
+{% block extra_javascript %}
+    <script src="{% static 'libs/custombox/custombox.min.js' %}"></script>
+
+{% endblock %}

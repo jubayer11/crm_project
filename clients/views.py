@@ -53,6 +53,8 @@ def submitClient(request):
         company_type = request.POST['company_type']
         Note = request.POST['Note']
         follow_up_date_time = request.POST['follow_up_date_time']
+        rankComment = request.POST['rankComment']
+
         client = Client(client_unique_code=uniqueCode, Company_name=clientName,
                         Meeting_follow_up_date=follow_up_date_time, contact_person=clientContactName,
                         contact_person_designation=clientContactDesignation, Gender=gender,
@@ -61,7 +63,7 @@ def submitClient(request):
                         Products=products,
                         Product_segment=productsSagement, Business_maturity_rate=business_maturity_rate,
                         Rank=business_ranking, Mode_of_payment=mode_of_payment, Company_size=company_size,
-                        Company_type=company_type, Note=Note)
+                        Company_type=company_type, Note=Note, Rank_comment=rankComment)
         client.save()
         return redirect('clients:allClient')
 
