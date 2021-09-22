@@ -5,7 +5,7 @@ chardet==3.0.4
 configparser==4.0.2
 confusable-homoglyphs==3.2.0
 defusedxml==0.6.0
-Django==3.0.4
+Django==3.1.13
 django-allauth==0.41.0
 django-crispy-forms==1.9.0
 django-gulp==4.1.0
